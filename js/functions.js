@@ -43,4 +43,6 @@ const extractNumber = (string) => {
   }
 };
 
-
+lengthString();
+findPalendrom();
+extractNumber();

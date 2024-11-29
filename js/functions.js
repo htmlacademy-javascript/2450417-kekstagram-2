@@ -43,6 +43,4 @@ const extractNumber = (string) => {
   }
 };
 
-console.log(lengthString('qq', 1));
-console.log(findPalendrom('топот'));
-console.log(extractNumber('агент 007'));
+

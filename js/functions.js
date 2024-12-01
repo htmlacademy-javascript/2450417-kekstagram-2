@@ -13,7 +13,7 @@ const lengthString = (string, Maxlength) => string.length <= Maxlength;
 
 //Функция для проверки, является ли строка палиндромом
 
-const findPalendrom = (string) => {
+const findPalendrome = (string) => {
   const formattedinString = string.replaceAll(' ','').toUpperCase();
   let reverseString = '';
   for (let i = formattedinString.length - 1; i >= 0; i--) {
@@ -44,5 +44,5 @@ const extractNumber = (string) => {
 };
 
 lengthString();
-findPalendrom();
+findPalendrome();
 extractNumber();

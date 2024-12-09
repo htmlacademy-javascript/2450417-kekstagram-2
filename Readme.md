@@ -1,7 +1,8 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Юлия Виноградова](https://up.htmlacademy.ru/javascript-individual/2/user/2450417).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий Беллавин](https://htmlacademy.ru/profile/bellavin).
+* Сайт: [Проект kekstagram](https://julia1121i1.github.io/2450417-kekstagram-2/).
 
 ---
 

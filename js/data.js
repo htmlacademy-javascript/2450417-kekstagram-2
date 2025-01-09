@@ -1,5 +1,4 @@
-import {getRandomElement} from './util.js';
-import {getRandomInteger} from './util.js';
+import { getRandomElement, getRandomInteger } from './util.js';
 
 const USER_MESSAGES = [
   'Всё отлично!',
@@ -26,7 +25,7 @@ const USER_AVATAR = [
   'img/avatar-3.svg',
   'img/avatar-4.svg',
   'img/avatar-5.svg',
-  'img/avatar-6.svg',
+  'img/avatar-6.svg'
 ];
 
 const DESCRIPTION = [
@@ -47,11 +46,13 @@ const LikeQty = {
   MIN: 15,
   MAX: 200
 };
+
 const PhotoIdQty = {
   MIN: 1,
   MAX: 25
 };
-const commentIdQty = {
+
+const CommentIdQty = {
   MIN: 1,
   MAX: 1000
 };
@@ -59,37 +60,35 @@ const commentIdQty = {
 const createIdGenerator = (min, max) => {
   const storesId = [];
   for (let i = min; i <= max; i++) {
-    storesId.push(i); // Заполняем массив числами от min до max
+    storesId.push(i);
   }
   return () => {
     const randomIndex = Math.floor(Math.random() * storesId.length);
-    return storesId.splice(randomIndex, 1)[0]; // Удаляем и возвращаем случайный ID
+    return storesId.splice(randomIndex, 1)[0];
   };
 };
 
-const getPhotoId = createIdGenerator(PhotoIdQty);
-
-const getCommentId = createIdGenerator(commentIdQty);
+const getPhotoId = createIdGenerator(PhotoIdQty.MIN, PhotoIdQty.MAX);
+const getCommentId = createIdGenerator(CommentIdQty.MIN, CommentIdQty.MAX);
 
 const createComment = () => ({
   id: getCommentId(),
   avatar: getRandomElement(USER_AVATAR),
   message: getRandomElement(USER_MESSAGES),
-  name:getRandomElement(USER_NAME),
+  name: getRandomElement(USER_NAME)
 });
 
-const createPhoto = () => {
+const createPhoto = (count) => Array.from({ length: count }, () => {
   const id = getPhotoId();
-  const countComment = getRandomInteger (CommentQty.MIN, CommentQty.MAX);
+  const countComment = getRandomInteger(CommentQty.MIN, CommentQty.MAX);
   const comment = Array.from({ length: countComment }, createComment);
   return {
     id,
-    url: `photo/${id}.jpg`,
-    description: getRandomElement (DESCRIPTION),
-    likes: getRandomInteger (LikeQty.MIN, LikeQty.MAX),
-    comment
+    url: `./photos/${id}.jpg`,
+    description: getRandomElement(DESCRIPTION),
+    likes: getRandomInteger(LikeQty.MIN, LikeQty.MAX),
+    comments: comment
   };
-};
+});
 
-createPhoto();
-export {createPhoto};
+export { createPhoto };

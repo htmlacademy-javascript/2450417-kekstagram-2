@@ -1,2 +1,3 @@
-import {createPhoto} from './data.js';
-window.console.log(createPhoto);
+import { createPhoto } from './data.js';
+import { container } from './thumbnails.js';
+container (createPhoto);

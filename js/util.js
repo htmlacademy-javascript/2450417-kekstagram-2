@@ -8,4 +8,6 @@ const getRandomElement = (elements) => elements[getRandomInteger(0, elements.len
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomElement,getRandomInteger,isEscapeKey};
+const isUniqueArray = (array) => new Set(array).size === array.length;
+
+export {getRandomElement,getRandomInteger,isEscapeKey,isUniqueArray};

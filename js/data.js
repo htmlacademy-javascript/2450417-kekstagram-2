@@ -91,4 +91,4 @@ const createPhoto = (count) => Array.from({ length: count }, () => {
   };
 });
 
-export { createPhoto };
+export {createPhoto};

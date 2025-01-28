@@ -75,4 +75,4 @@ const resetEffect = () => {
   effectsList.dispatchEvent(changeEvent);
 };
 export {resetEffect};
-//
+

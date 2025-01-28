@@ -30,4 +30,4 @@ buttonBigger.addEventListener('click', onIncreaseStep);
 buttonSmaller.addEventListener('click', onDecreaseStep);
 
 export const resetScale = () => photoPreview.style.removeProperty('transform');
-//
+

@@ -41,7 +41,6 @@ function selectFilter() {
       filteredData = pictures;
   }
   renderThumbnails(filteredData);
-
 }
 
 function sortPhotos (picturesData) {
@@ -52,4 +51,3 @@ function sortPhotos (picturesData) {
   pictures = picturesData;
 }
 export {sortPhotos};
-//

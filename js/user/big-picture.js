@@ -40,4 +40,3 @@ const onCloseButtonClick = closeModal;
 closeButton.addEventListener('click', onCloseButtonClick);
 
 export {openModal};
-//

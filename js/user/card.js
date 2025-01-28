@@ -35,4 +35,4 @@ export const renderComments = (comments) => {
   currentComments = comments;
   loaderButton.click();
 };
-//
+

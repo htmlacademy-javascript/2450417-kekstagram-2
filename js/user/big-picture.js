@@ -1,16 +1,16 @@
-import { renderComments } from './card.js';
-import {isEscapeKey} from './util.js';
+import { renderComments} from './card.js';
+import {isEscapeKey} from '../util.js';
 
 
 const newBody = document.body;
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.cancel');
 
-function showBigPhoto (photo) {
+const showBigPhoto = (photo) => {
   bigPicture.querySelector ('.big-picture__img img').setAttribute ('src', photo.url);
   bigPicture.querySelector ('.likes-count').textContent = photo.likes;
   bigPicture.querySelector ('.social__caption').textContent = photo.description;
-}
+};
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -40,3 +40,4 @@ const onCloseButtonClick = closeModal;
 closeButton.addEventListener('click', onCloseButtonClick);
 
 export {openModal};
+//

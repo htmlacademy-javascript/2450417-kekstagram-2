@@ -62,7 +62,6 @@ form.addEventListener('submit', (evt) => {
       })
       .catch(renderErrorForm)
       .finally (enableSubmitButton);
-
   }
 });
 //

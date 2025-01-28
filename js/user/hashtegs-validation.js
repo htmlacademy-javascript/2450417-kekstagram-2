@@ -76,4 +76,4 @@ pristine.addValidator(
 );
 
 export { validate, resetValidation };
-//
+

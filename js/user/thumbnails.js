@@ -36,4 +36,4 @@ const clearThumbnails = () => container.querySelectorAll('.picture').forEach((it
 });
 
 export {renderThumbnails, clearThumbnails};
-//
+

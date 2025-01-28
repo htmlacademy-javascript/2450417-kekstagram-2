@@ -31,4 +31,4 @@ function debounce (callback, timeoutDelay = 500) {
 }
 
 export {getRandomInteger,isEscapeKey,isUniqueArray,renderError,debounce,getSortRandom};
-//
+

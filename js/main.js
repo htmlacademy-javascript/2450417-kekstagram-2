@@ -12,4 +12,4 @@ getData ()
     renderThumbnails(photos);
   })
   .catch(renderError);
-//
+

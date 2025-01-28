@@ -18,7 +18,6 @@ const disableSubmitButton = () => {
   formSubmitButton.disabled = true;
 
 };
-
 const enableSubmitButton = () => {
   formSubmitButton.disabled = false;
 };
@@ -42,7 +41,6 @@ filename.addEventListener('change', (evt) => {
   toggleClass();
   document.addEventListener('keydown', onDocumentEscape);
 });
-
 form.addEventListener('reset', () => {
   toggleClass();
   document.removeEventListener('keydown', onDocumentEscape);
@@ -52,7 +50,6 @@ form.addEventListener('reset', () => {
 });
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-
   const isValid = validate();
   if (isValid) {
     disableSubmitButton();

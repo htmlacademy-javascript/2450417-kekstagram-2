@@ -52,6 +52,7 @@ form.addEventListener('reset', () => {
 });
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   const isValid = validate();
   if (isValid) {
     disableSubmitButton();

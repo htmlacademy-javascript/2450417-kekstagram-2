@@ -10,4 +10,5 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isUniqueArray = (array) => new Set(array).size === array.length;
 
+
 export {getRandomElement,getRandomInteger,isEscapeKey,isUniqueArray};

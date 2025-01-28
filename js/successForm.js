@@ -30,6 +30,5 @@ export const renderSuccessForm = () => {
     document.removeEventListener('click', onCloseSuccess);
 
     newSuccessTemplate.remove();
-
   }
 };

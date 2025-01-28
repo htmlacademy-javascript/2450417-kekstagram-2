@@ -52,6 +52,7 @@ form.addEventListener('reset', () => {
 });
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   const isValid = validate();
   if (isValid) {
     disableSubmitButton();
@@ -62,7 +63,6 @@ form.addEventListener('submit', (evt) => {
       })
       .catch(renderErrorForm)
       .finally (enableSubmitButton);
-
   }
 });
 //

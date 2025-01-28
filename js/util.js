@@ -6,9 +6,11 @@ const getRandomInteger = (a,b) => {
 };
 const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isUniqueArray = (array) => new Set(array).size === array.length;
 
 export {getRandomElement,getRandomInteger,isEscapeKey,isUniqueArray};
+
 

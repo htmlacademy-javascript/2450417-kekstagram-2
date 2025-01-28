@@ -42,5 +42,6 @@ form.addEventListener('submit', (evt) => {
     closeModal();
     resetEffect();
     resetScale();
+
   }
 });

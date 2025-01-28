@@ -1,5 +1,7 @@
-import { isUniqueArray } from './util.js';
+import { isUniqueArray } from '../util';
+
 const form = document.querySelector('.img-upload__form');
+
 const Hashtags = {
   MAX_COUNT: 5,
   MAX_LENGTH: 20,
@@ -14,33 +16,42 @@ const Hashtags = {
 const Description = {
   MAX_LENGTH: 140,
 };
+
 let errorMessage = '';
+
 const validateHashtags = (value) => {
   if (!value.length) {
     return true;
   }
+
   const tags = value.trim().toLowerCase().split(/\s+(?=#)/);
+
   if (tags.length > Hashtags.MAX_COUNT) {
     errorMessage = Hashtags.MAX_COUNT_ERROR;
     return false;
   }
+
   if (!isUniqueArray(tags)) {
     errorMessage = Hashtags.REUSE_HASHTAGS_ERROR;
     return false;
   }
+
   return tags.every((tag) => {
     if (tag[0] !== '#') {
       errorMessage = Hashtags. START_SYMBOL_ERROR;
       return false;
     }
+
     if (tag === '#') {
       errorMessage = Hashtags.HASHTAGS_ONLY_ERROR;
       return false;
     }
+
     if (tag.length > Hashtags.MAX_LENGTH) {
       errorMessage = Hashtags.MAX_LENGTH_ERROR;
       return false;
     }
+
     if (!Hashtags.ALLOWED_SYMBOLS.test(tag)) {
       errorMessage = Hashtags.SYMBOLS_ERROR;
       return false;
@@ -48,16 +59,21 @@ const validateHashtags = (value) => {
     return true;
   });
 };
+
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
 });
+
+const validate = () => pristine.validate();
+const resetValidation = () => pristine.reset();
 pristine.addValidator(form.hashtags, validateHashtags, () => errorMessage);
+
 pristine.addValidator(
   form.description,
   (value) => value.length <= Description.MAX_LENGTH,
   `Максимальная длина комментария ${Description.MAX_LENGTH} символов`
 );
-const validate = () => pristine.validate();
-const resetValidation = () => pristine.reset();
+
 export { validate, resetValidation };
+//

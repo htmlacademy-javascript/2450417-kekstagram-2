@@ -2,12 +2,10 @@ const shownCount = document.querySelector('.social__comment-shown-count');
 const totalCount = document.querySelector('.social__comment-total-count');
 const list = document.querySelector('.social__comments');
 const listItem = list.querySelector('.social__comment');
-
 const loaderButton = document.querySelector('.comments-loader');
 const PACK_SIZE = 5;
 
 let currentComments = [];
-
 
 const createComment = (comment) => {
   const item = listItem.cloneNode(true);
@@ -28,10 +26,13 @@ const onLoaderButtonClick = () => {
   shownCount.textContent = endOfSlice;
   loaderButton.classList.toggle('hidden', isAllCommentsShown);
 };
+
 loaderButton.addEventListener('click', onLoaderButtonClick);
+
 export const renderComments = (comments) => {
   list.innerHTML = '';
   totalCount.textContent = comments.length;
   currentComments = comments;
   loaderButton.click();
 };
+//

@@ -1,6 +1,6 @@
 import { isUniqueArray } from '../util';
 
-const form = document.querySelector('.img-upload__form');
+const formElement = document.querySelector('.img-upload__form');
 
 const Hashtags = {
   MAX_COUNT: 5,
@@ -60,17 +60,17 @@ const validateHashtags = (value) => {
   });
 };
 
-const pristine = new Pristine(form, {
+const pristine = new Pristine(formElement, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
 });
 
 const validate = () => pristine.validate();
 const resetValidation = () => pristine.reset();
-pristine.addValidator(form.hashtags, validateHashtags, () => errorMessage);
+pristine.addValidator(formElement.hashtags, validateHashtags, () => errorMessage);
 
 pristine.addValidator(
-  form.description,
+  formElement.description,
   (value) => value.length <= Description.MAX_LENGTH,
   `Максимальная длина комментария ${Description.MAX_LENGTH} символов`
 );

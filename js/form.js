@@ -1,30 +1,29 @@
 import { isEscapeKey } from './util.js';
-import './user/big-picture.js';
-import {resetValidation, validate} from './user/hashtegs-validation.js';
+import {resetValidation, validate} from './user/hashtags-validation.js';
 import {resetScale} from './form/change-scale.js';
 import {resetEffect} from './form/effects.js';
 import {sendData} from './server.js';
-import {renderSuccessForm} from './successForm.js';
-import {renderErrorForm} from './errorForm.js';
+import {renderSuccessForm} from './success-form.js';
+import {renderErrorForm} from './error-form.js';
 
-const body = document.body;
-const form = document.querySelector('.img-upload__form');
-const filename = form.filename;
-const editingModal = form.querySelector('.img-upload__overlay');
-const formSubmitButton = document.querySelector('.img-upload__submit');
+const bodyElement = document.body;
+const formElement = document.querySelector('.img-upload__form');
+const filenameElement = formElement.filename;
+const editingModalElement = formElement.querySelector('.img-upload__overlay');
+const formSubmitButtonElement = document.querySelector('.img-upload__submit');
 const isErrorOpened = () => document.querySelector('.error') !== null;
 
 const disableSubmitButton = () => {
-  formSubmitButton.disabled = true;
+  formSubmitButtonElement.disabled = true;
 
 };
 const enableSubmitButton = () => {
-  formSubmitButton.disabled = false;
+  formSubmitButtonElement.disabled = false;
 };
-const closeModal = () => form.reset();
+const closeModal = () => formElement.reset();
 
 const isFocusText = () =>
-  [form.hashtags, form.description].includes(document.activeElement);
+  [formElement.hashtags, formElement.description].includes(document.activeElement);
 
 const onDocumentEscape = (evt) => {
   if (isEscapeKey(evt) && !isErrorOpened() && !isFocusText()) {
@@ -33,22 +32,22 @@ const onDocumentEscape = (evt) => {
   }
 };
 const toggleClass = () => {
-  editingModal.classList.toggle('hidden');
-  body.classList.toggle('modal-open');
+  editingModalElement.classList.toggle('hidden');
+  bodyElement.classList.toggle('modal-open');
 };
-filename.addEventListener('change', (evt) => {
+filenameElement.addEventListener('change', (evt) => {
   evt.preventDefault();
   toggleClass();
   document.addEventListener('keydown', onDocumentEscape);
 });
-form.addEventListener('reset', () => {
+formElement.addEventListener('reset', () => {
   toggleClass();
   document.removeEventListener('keydown', onDocumentEscape);
   resetValidation();
   resetScale();
   resetEffect();
 });
-form.addEventListener('submit', (evt) => {
+formElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid = validate();
   if (isValid) {

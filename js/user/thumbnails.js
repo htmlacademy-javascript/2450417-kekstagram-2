@@ -1,11 +1,11 @@
 import { openModal } from './big-picture';
 import { getPhotoById } from './photo-state';
 
-const template = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
+const templateElement = document.querySelector('#picture').content.querySelector('.picture');
+const containerElement = document.querySelector('.pictures');
 
 const createThumbnails = (photo) => {
-  const thumbnail = template.cloneNode(true);
+  const thumbnail = templateElement.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
 
   thumbnail.dataset.id = photo.id;
@@ -15,9 +15,9 @@ const createThumbnails = (photo) => {
   thumbnail.querySelector('.picture__likes').textContent = photo.likes;
   return thumbnail;
 };
-const renderThumbnails = (photos) => container.append(...photos.map(createThumbnails));
+const renderThumbnails = (photos) => containerElement.append(...photos.map(createThumbnails));
 
-container.addEventListener('click', (evt) => {
+containerElement.addEventListener('click', (evt) => {
   const thumbnail = evt.target.closest('.picture');
   if (thumbnail === null) {
     return;
@@ -31,7 +31,7 @@ container.addEventListener('click', (evt) => {
   openModal (photo);
 });
 
-const clearThumbnails = () => container.querySelectorAll('.picture').forEach((item) => {
+const clearThumbnails = () => containerElement.querySelectorAll('.picture').forEach((item) => {
   item.remove();
 });
 

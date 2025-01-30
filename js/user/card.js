@@ -1,14 +1,14 @@
-const shownCount = document.querySelector('.social__comment-shown-count');
-const totalCount = document.querySelector('.social__comment-total-count');
-const list = document.querySelector('.social__comments');
-const listItem = list.querySelector('.social__comment');
-const loaderButton = document.querySelector('.comments-loader');
+const shownCountElement = document.querySelector('.social__comment-shown-count');
+const totalCountElement = document.querySelector('.social__comment-total-count');
+const listElement = document.querySelector('.social__comments');
+const listItemElement = listElement.querySelector('.social__comment');
+const loaderButtonElement = document.querySelector('.comments-loader');
 const PACK_SIZE = 5;
 
 let currentComments = [];
 
 const createComment = (comment) => {
-  const item = listItem.cloneNode(true);
+  const item = listItemElement.cloneNode(true);
   const img = item.querySelector('.social__picture');
   img.src = comment.avatar;
   img.alt = comment.name;
@@ -17,22 +17,24 @@ const createComment = (comment) => {
 };
 
 const onLoaderButtonClick = () => {
-  const shownComments = list.childElementCount;
+  const shownComments = listElement.childElementCount;
   let endOfSlice = shownComments + PACK_SIZE;
   const isAllCommentsShown = endOfSlice >= currentComments.length;
   endOfSlice = isAllCommentsShown ? currentComments.length : endOfSlice;
   const commentsSlice = currentComments.slice(shownComments, endOfSlice);
-  list.append(...commentsSlice.map(createComment));
-  shownCount.textContent = endOfSlice;
-  loaderButton.classList.toggle('hidden', isAllCommentsShown);
+  listElement.append(...commentsSlice.map(createComment));
+  shownCountElement.textContent = endOfSlice;
+  loaderButtonElement.classList.toggle('hidden', isAllCommentsShown);
 };
 
-loaderButton.addEventListener('click', onLoaderButtonClick);
+loaderButtonElement.addEventListener('click', onLoaderButtonClick);
 
-export const renderComments = (comments) => {
-  list.innerHTML = '';
-  totalCount.textContent = comments.length;
+const renderComments = (comments) => {
+  listElement.innerHTML = '';
+  totalCountElement.textContent = comments.length;
   currentComments = comments;
-  loaderButton.click();
+  loaderButtonElement.click();
 };
+
+export{renderComments};
 

@@ -3,13 +3,13 @@ import {isEscapeKey} from '../util.js';
 
 
 const newBody = document.body;
-const bigPicture = document.querySelector('.big-picture');
-const closeButton = bigPicture.querySelector('.cancel');
+const bigPictureElement = document.querySelector('.big-picture');
+const closeButtonElement = bigPictureElement.querySelector('.cancel');
 
 const showBigPhoto = (photo) => {
-  bigPicture.querySelector ('.big-picture__img img').setAttribute ('src', photo.url);
-  bigPicture.querySelector ('.likes-count').textContent = photo.likes;
-  bigPicture.querySelector ('.social__caption').textContent = photo.description;
+  bigPictureElement.querySelector ('.big-picture__img img').setAttribute ('src', photo.url);
+  bigPictureElement.querySelector ('.likes-count').textContent = photo.likes;
+  bigPictureElement.querySelector ('.social__caption').textContent = photo.description;
 };
 
 const onDocumentKeydown = (evt) => {
@@ -20,16 +20,16 @@ const onDocumentKeydown = (evt) => {
 };
 
 const toggleClasses = (willBeOpened = true) => {
-  bigPicture.classList.toggle('hidden', !willBeOpened);
+  bigPictureElement.classList.toggle('hidden', !willBeOpened);
   newBody.classList.toggle('modal-open', willBeOpened);
 };
 
-function openModal(picture) {
+const openModal = (picture) => {
   toggleClasses(true);
   showBigPhoto(picture);
   renderComments(picture.comments);
   document.addEventListener('keydown', onDocumentKeydown);
-}
+};
 
 function closeModal() {
   toggleClasses(false);
@@ -37,6 +37,6 @@ function closeModal() {
 }
 
 const onCloseButtonClick = closeModal;
-closeButton.addEventListener('click', onCloseButtonClick);
+closeButtonElement.addEventListener('click', onCloseButtonClick);
 
 export {openModal};

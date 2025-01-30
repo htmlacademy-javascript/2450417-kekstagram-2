@@ -1,10 +1,10 @@
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
-export const renderSuccessForm = () => {
+const renderSuccessForm = () => {
 
-  const newSuccessTemplate = successTemplate.cloneNode(true);
-  const successButton = newSuccessTemplate.querySelector('.success__button');
-  const newSuccessSection = newSuccessTemplate.querySelector('.success__inner');
-  document.querySelector('body').append(newSuccessTemplate);
+  const newSuccessTemplateElement = successTemplate.cloneNode(true);
+  const successButtonElement = newSuccessTemplateElement.querySelector('.success__button');
+  const newSuccessSection = newSuccessTemplateElement.querySelector('.success__inner');
+  document.querySelector('body').append(newSuccessTemplateElement);
 
 
   const onCloseSuccess = (evt) => {
@@ -20,15 +20,17 @@ export const renderSuccessForm = () => {
   const onButtonClick = () => {
     removeForm();
   };
-  successButton.addEventListener('click', onButtonClick);
+  successButtonElement.addEventListener('click', onButtonClick);
   document.addEventListener('keydown', onEscapeSuccess);
   document.addEventListener('click',onCloseSuccess);
 
   function removeForm() {
-    successButton.removeEventListener('click', onButtonClick);
+    successButtonElement.removeEventListener('click', onButtonClick);
     document.removeEventListener('keydown', onEscapeSuccess,);
     document.removeEventListener('click', onCloseSuccess);
 
-    newSuccessTemplate.remove();
+    newSuccessTemplateElement.remove();
   }
 };
+
+export {renderSuccessForm};

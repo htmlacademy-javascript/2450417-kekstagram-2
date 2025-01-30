@@ -1,60 +1,55 @@
-const FROM_ZERO_TO_HUNDRED = createSliderData();
-const FROM_ZERO_TO_ONE = createSliderData(0, 1, 0.1);
+const SliderRange = {
+  ZERO_TO_HUNDRED: { range: { min: 0, max: 100 }, start: 100, step: 1 },
+  ZERO_TO_ONE: { range: { min: 0, max: 1 }, start: 1, step: 0.1 },
+  ZERO_TO_THREE: { range: { min: 0, max: 3 }, start: 3, step: 0.1 },
+  ONE_TO_THREE: { range: { min: 1, max: 3 }, start: 3, step: 0.1 },
+};
 
-export const Effect = {
+const Effect = {
   none: {
-    slider: FROM_ZERO_TO_HUNDRED,
+    slider: SliderRange.ZERO_TO_HUNDRED,
   },
 
   chrome: {
-    slider: FROM_ZERO_TO_ONE,
+    slider: SliderRange.ZERO_TO_ONE,
     filter: (value) => `grayscale(${value})`,
   },
 
   sepia: {
-    slider: FROM_ZERO_TO_ONE,
+    slider: SliderRange.ZERO_TO_ONE,
     filter: (value) => `sepia(${value})`,
   },
 
   marvin: {
-    slider: FROM_ZERO_TO_HUNDRED,
+    slider: SliderRange.ZERO_TO_HUNDRED,
     filter: (value) => `invert(${value}%)`,
   },
 
   phobos: {
-    slider: createSliderData(0, 3, 0.1),
+    slider: SliderRange.ZERO_TO_THREE,
     filter: (value) => `blur(${value}px)`
   },
 
   heat: {
-    slider: createSliderData(1, 3, 0.1),
+    slider: SliderRange.ZERO_TO_THREE,
     filter: (value) => `brightness(${value})`
   }
 };
-const form = document.querySelector('.img-upload__form');
-const effectsList = form.querySelector('.effects__list');
-const sliderContainer = form.querySelector('.img-upload__effect-level');
-const sliderElement = form.querySelector('.effect-level__slider');
-const image = document.querySelector('.img-upload__preview img');
+const formElement = document.querySelector('.img-upload__form');
+const effectsListElement = formElement.querySelector('.effects__list');
+const sliderContainer = formElement.querySelector('.img-upload__effect-level');
+const sliderElement = formElement.querySelector('.effect-level__slider');
+const imgUploadElement = document.querySelector('.img-upload__preview img');
 
 const changeEvent = new Event('change');
 const customSlider = noUiSlider.create(sliderElement, {
   ...Effect.none.slider,
   connect: 'lower',
 });
-function createSliderData(min = 0, max = 100, step = 1, start = max) {
-  return {
-    range: {
-      min,
-      max,
-    },
-    start,
-    step,
-  };
-}
+
 sliderContainer.hidden = true;
-effectsList.addEventListener('change', () => {
-  const effect = form.effect.value;
+effectsListElement.addEventListener('change', () => {
+  const effect = formElement.effect.value;
   sliderContainer.hidden = effect === 'none';
   const nextOptions = Effect[effect].slider;
   customSlider.updateOptions(nextOptions);
@@ -62,17 +57,17 @@ effectsList.addEventListener('change', () => {
 });
 customSlider.on('update', () => {
   const value = customSlider.get();
-  form['effect-level'].value = Number(value);
-  const currentEffect = form.effect.value;
+  formElement['effect-level'].value = Number(value);
+  const currentEffect = formElement.effect.value;
   const filter = Effect[currentEffect].filter;
   if (currentEffect === 'none') {
-    return image.style.removeProperty('filter');
+    return imgUploadElement.style.removeProperty('filter');
   }
-  image.style.filter = filter(value);
+  imgUploadElement.style.filter = filter(value);
 });
 const resetEffect = () => {
-  form.effect.value = 'none';
-  effectsList.dispatchEvent(changeEvent);
+  formElement.effect.value = 'none';
+  effectsListElement.dispatchEvent(changeEvent);
 };
-export {resetEffect};
+export {Effect,resetEffect};
 

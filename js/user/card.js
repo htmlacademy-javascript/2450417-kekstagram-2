@@ -9,9 +9,9 @@ let currentComments = [];
 
 const createComment = (comment) => {
   const item = listItemElement.cloneNode(true);
-  const img = item.querySelector('.social__picture');
-  img.src = comment.avatar;
-  img.alt = comment.name;
+  const imgElement = item.querySelector('.social__picture');
+  imgElement.src = comment.avatar;
+  imgElement.alt = comment.name;
   item.querySelector('.social__text').textContent = comment.message;
   return item;
 };

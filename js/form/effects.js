@@ -37,7 +37,7 @@ const Effect = {
 };
 const formElement = document.querySelector('.img-upload__form');
 const effectsListElement = formElement.querySelector('.effects__list');
-const sliderContainer = formElement.querySelector('.img-upload__effect-level');
+const sliderContainerElement = formElement.querySelector('.img-upload__effect-level');
 const sliderElement = formElement.querySelector('.effect-level__slider');
 const imgUploadElement = document.querySelector('.img-upload__preview img');
 
@@ -47,10 +47,10 @@ const customSlider = noUiSlider.create(sliderElement, {
   connect: 'lower',
 });
 
-sliderContainer.hidden = true;
+sliderContainerElement.hidden = true;
 effectsListElement.addEventListener('change', () => {
   const effect = formElement.effect.value;
-  sliderContainer.hidden = effect === 'none';
+  sliderContainerElement.hidden = effect === 'none';
   const nextOptions = Effect[effect].slider;
   customSlider.updateOptions(nextOptions);
 

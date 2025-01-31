@@ -7,12 +7,12 @@ const renderSuccessForm = () => {
   document.querySelector('body').append(newSuccessTemplateElement);
 
 
-  const onCloseSuccess = (evt) => {
+  const onSuccessOutsideClick = (evt) => {
     if (! newSuccessSectionElement.contains(evt.target)) {
       removeForm();
     }
   };
-  const onEscapeSuccess = (evt) => {
+  const onSuccessEscapeKeydown = (evt) => {
     if ((evt.key === 'Escape')) {
       removeForm();
     }
@@ -21,13 +21,13 @@ const renderSuccessForm = () => {
     removeForm();
   };
   successButtonElement.addEventListener('click', onButtonClick);
-  document.addEventListener('keydown', onEscapeSuccess);
-  document.addEventListener('click',onCloseSuccess);
+  document.addEventListener('keydown', onSuccessEscapeKeydown);
+  document.addEventListener('click',onSuccessOutsideClick);
 
   function removeForm() {
     successButtonElement.removeEventListener('click', onButtonClick);
-    document.removeEventListener('keydown', onEscapeSuccess,);
-    document.removeEventListener('click', onCloseSuccess);
+    document.removeEventListener('keydown', onSuccessEscapeKeydown,);
+    document.removeEventListener('click', onSuccessOutsideClick);
 
     newSuccessTemplateElement.remove();
   }

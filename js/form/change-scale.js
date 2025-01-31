@@ -4,7 +4,6 @@ const Scale = {
   MIN: 25,
 };
 
-
 const photoPreviewElement = document.querySelector('.img-upload__preview > img ');
 const buttonBiggerElement = document.querySelector('.scale__control--bigger');
 const buttonSmallerElement = document.querySelector('.scale__control--smaller');
@@ -15,23 +14,30 @@ let scaleNumber = parseInt(outputScaleElement.value, 10);
 const onChangeScale = (value) => {
   outputScaleElement.value = `${value}%`;
   photoPreviewElement.style.transform = `scale(${ value / 100})`;
+  scaleNumber = value;
 };
 
-const onIncreaseStep = () => {
+const onScaleIncreaseClick = () => {
   if(scaleNumber < Scale.DEFAULT){
     scaleNumber += Scale.STEP;
     onChangeScale(scaleNumber);
   }
 };
-const onDecreaseStep = () => {
+const onScaleDecreaseClick = () => {
   if(scaleNumber > Scale.MIN){
     scaleNumber -= Scale.STEP;
     onChangeScale(scaleNumber);
   }
 };
-buttonBiggerElement.addEventListener('click', onIncreaseStep);
-buttonSmallerElement.addEventListener('click', onDecreaseStep);
+buttonBiggerElement.addEventListener('click', onScaleIncreaseClick);
+buttonSmallerElement.addEventListener('click', onScaleDecreaseClick);
 
-const resetScale = () => photoPreviewElement.style.removeProperty('transform');
-
-export{resetScale};
+const resetScale = () => {
+  photoPreviewElement.style.removeProperty('transform');
+  scaleNumber = Scale.DEFAULT;
+  outputScaleElement.value = `${Scale.DEFAULT}%`;
+};
+const restoreScale = () => {
+  onChangeScale(scaleNumber);
+};
+export{resetScale, restoreScale};

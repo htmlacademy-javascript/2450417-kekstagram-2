@@ -1,14 +1,14 @@
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
+const successTemplateElement = document.querySelector('#success').content.querySelector('.success');
 const renderSuccessForm = () => {
 
-  const newSuccessTemplateElement = successTemplate.cloneNode(true);
+  const newSuccessTemplateElement = successTemplateElement.cloneNode(true);
   const successButtonElement = newSuccessTemplateElement.querySelector('.success__button');
-  const newSuccessSection = newSuccessTemplateElement.querySelector('.success__inner');
+  const newSuccessSectionElement = newSuccessTemplateElement.querySelector('.success__inner');
   document.querySelector('body').append(newSuccessTemplateElement);
 
 
   const onCloseSuccess = (evt) => {
-    if (! newSuccessSection.contains(evt.target)) {
+    if (! newSuccessSectionElement.contains(evt.target)) {
       removeForm();
     }
   };

@@ -6,11 +6,11 @@ const containerElement = document.querySelector('.pictures');
 
 const createThumbnails = (photo) => {
   const thumbnail = templateElement.cloneNode(true);
-  const image = thumbnail.querySelector('.picture__img');
+  const imageElement = thumbnail.querySelector('.picture__img');
 
   thumbnail.dataset.id = photo.id;
-  image.src = photo.url;
-  image.alt = photo.description;
+  imageElement.src = photo.url;
+  imageElement.alt = photo.description;
   thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
   thumbnail.querySelector('.picture__likes').textContent = photo.likes;
   return thumbnail;

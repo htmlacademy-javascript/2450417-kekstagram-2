@@ -1,10 +1,13 @@
 import {debounce, getSortRandom} from './util.js';
 import {renderThumbnails, clearThumbnails} from './user/thumbnails.js';
+
 const RANDOM_PHOTO_AMOUNT = 10;
+const ACTIVE_CLASS = 'img-filters__button--active';
+
 const filtersContainer = document.querySelector('.img-filters');
 const [defaultButtonElement, randomButtonElement, discussedButtonElement] = filtersContainer.querySelectorAll('.img-filters__button');
+
 let activeFilter = defaultButtonElement;
-const ACTIVE_CLASS = 'img-filters__button--active';
 
 const toggleButtons = (button) => {
   activeFilter.classList.remove(ACTIVE_CLASS);

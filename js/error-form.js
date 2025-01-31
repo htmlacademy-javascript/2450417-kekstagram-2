@@ -5,18 +5,18 @@ const renderErrorForm = () => {
   const innerTemplateElement = newErrorTemplateElement.querySelector('.error__inner');
   document.querySelector('body').append(newErrorTemplateElement);
 
-  const onButtonClickError = () => {
+  const onErrorButtonClick = () => {
     removeError();
 
   };
-  const onCloseError = (evt) => {
+  const onDocumentClick = (evt) => {
     evt.preventDefault();
     if (! innerTemplateElement.contains(evt.target)) {
       removeError();
     }
   };
 
-  const onEscapeError = (evt) => {
+  const onEscapeKey = (evt) => {
     if ((evt.key === 'Escape')){
       evt.stopPropagation();
       evt.preventDefault();
@@ -25,13 +25,13 @@ const renderErrorForm = () => {
   };
 
 
-  document.addEventListener('click', onCloseError);
-  errorButtonElement.addEventListener('click',onButtonClickError);
-  document.addEventListener('keydown', onEscapeError);
+  document.addEventListener('click', onDocumentClick);
+  errorButtonElement.addEventListener('click',onErrorButtonClick);
+  document.addEventListener('keydown', onEscapeKey);
 
   function removeError() {
-    document.removeEventListener('keydown', onEscapeError);
-    document.removeEventListener('click', onCloseError);
+    document.removeEventListener('keydown', onEscapeKey);
+    document.removeEventListener('click', onDocumentClick);
     newErrorTemplateElement.remove();
   }
 };

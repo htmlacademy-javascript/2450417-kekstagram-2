@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util.js';
 import {resetValidation, validate} from './user/hashtags-validation.js';
 import {resetScale} from './form/change-scale.js';
+import { restoreScale } from './form/change-scale.js';
 import {resetEffect} from './form/effects.js';
 import {sendData} from './server.js';
 import {renderSuccessForm} from './success-form.js';
@@ -25,7 +26,7 @@ const closeModal = () => formElement.reset();
 const isFocusText = () =>
   [formElement.hashtags, formElement.description].includes(document.activeElement);
 
-const onDocumentEscape = (evt) => {
+const onDocumentEscapeKeydown = (evt) => {
   if (isEscapeKey(evt) && !isErrorOpened() && !isFocusText()) {
     evt.preventDefault();
     closeModal();
@@ -38,13 +39,14 @@ const toggleClass = () => {
 filenameElement.addEventListener('change', (evt) => {
   evt.preventDefault();
   toggleClass();
-  document.addEventListener('keydown', onDocumentEscape);
+  document.addEventListener('keydown', onDocumentEscapeKeydown);
 });
 formElement.addEventListener('reset', () => {
   toggleClass();
-  document.removeEventListener('keydown', onDocumentEscape);
+  document.removeEventListener('keydown', onDocumentEscapeKeydown);
   resetValidation();
   resetScale();
+  restoreScale();
   resetEffect();
 });
 formElement.addEventListener('submit', (evt) => {

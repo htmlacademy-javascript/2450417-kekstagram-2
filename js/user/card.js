@@ -1,9 +1,10 @@
+const PACK_SIZE = 5;
+
 const shownCountElement = document.querySelector('.social__comment-shown-count');
 const totalCountElement = document.querySelector('.social__comment-total-count');
 const listElement = document.querySelector('.social__comments');
 const listItemElement = listElement.querySelector('.social__comment');
 const loaderButtonElement = document.querySelector('.comments-loader');
-const PACK_SIZE = 5;
 
 let currentComments = [];
 
